@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jdbc:mysql://rm-wz9q5p0audlewggygo.mysql.rds.aliyuncs.com/c_store?useUnicode=yes&characterEncoding=UTF-8
+    username: yangqi
+    password: Test1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
