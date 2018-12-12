@@ -30,31 +30,22 @@ import java.util.Set;
 public class LongestSubstringWithoutRepeatingCharacters {
     public int lengthOfLongestSubstring(String s) {
         int len = s.length();
-        int maxLength = 0;
+        int maxLength=0,i=0,j=0;
 
-        for (int i = 0; i < len; i++) {
-            for (int j = i+1; j <= len; j++) {
+        Set<Character> datas = new HashSet<>();
 
-                if (allDifference(s, i, j)) {
-                    maxLength = Math.max(j - i, maxLength);
-                } else {
-                    break;
-                }
+        while (i < len && j < len) {
+            if (!datas.contains(s.charAt(j))) {
+                datas.add(s.charAt(j++));
+                maxLength = Math.max(maxLength, j - i);
+            } else {
+                datas.remove(s.charAt(i++));
             }
         }
         return maxLength;
     }
 
-    private boolean allDifference(String s, int start, int end) {
-        Set<Character> sets = new HashSet<>();
-        while (start < end) {
-            if (!sets.add(s.charAt(start))) {
-                return false;
-            }
-            start++;
-        }
-        return true;
-    }
+
 
     public static void main(String[] args) {
         int result = new LongestSubstringWithoutRepeatingCharacters().lengthOfLongestSubstring("abcabcbb");
