@@ -38,14 +38,13 @@ public class LongestPalindromicSubstring {
         if (str.length() < 2) {
             return str;
         }
-        int max = 0;
 
-
-        for (int i = 0; i < s.length(); i++) {
-            for (int j = i; j < s.length(); j++) {
+        int len = s.length();
+        for (int i = 0; i < len; i++) {
+            for (int j = len-1; j>=i; j--) {
                 if (Objects.equals(s.charAt(i), s.charAt(j))) {
                     String substring = s.substring(i, j + 1);
-//check substring is a palindrome
+//cbbd
                     int k1 = 0;
                     int length = substring.length();
                     boolean isPalindrome = true;
@@ -59,12 +58,16 @@ public class LongestPalindromicSubstring {
 
 
 
-                    if (j - i >= max && isPalindrome) {
-                        max = j - i;
-                        str = substring;
+                    if (isPalindrome) {
+                        return substring;
 
                     }
+
+
                 }
+
+
+
             }
         }
 
@@ -72,8 +75,5 @@ public class LongestPalindromicSubstring {
         return str;
     }
 
-    public static void main(String[] args) {
-        String s = new LongestPalindromicSubstring().longestPalindrome("bb");
-        System.out.println(s);
-    }
+
 }
