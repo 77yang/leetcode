@@ -26,37 +26,50 @@
 public class MedianofTwoSortedArrays {
 
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+//1 3   2 4 3
 
-        int len1 = nums1.length;
-        int len2 = nums2.length;
-        int i = 0, j = 0, k = 0;
-        int[] arr = new int[len1 + len2];
-        while (i < len1 || j < len2) {
-            int i1 = nums1[i];
-            int j1 = nums2[j];
-            if (j1 >= i1) {
-                arr[k++] = i1;
-                i++;
-            }else {
-                arr[k++] = j1;
-                j++;
+
+        int l1 = nums1.length;
+        int l2 = nums2.length;
+        int[] arr = new int[l1 + l2];
+        int k = 0, i = 0, j = 0;
+
+
+        while (i < l1 || j < l2) {
+            if (i < l1 && j >= l2) {
+                arr[k++] = nums1[i++];
+            } else if (i >= l1 && j < l2) {
+                arr[k++] = nums2[j++];
+            } else {
+                int i1 = nums1[i];
+                int i2 = nums2[j];
+                if (i1 > i2) {
+                    arr[k++] = i2;
+                    j++;
+                } else {
+                    arr[k++] = i1;
+                    i++;
+                }
             }
+        }
 
-            }
 
-
+        k--;
+        int index = k / 2;
         if (k % 2 == 0) {
             //奇数
-            return arr[k / 2];
+            return arr[index];
 
         } else {
-
+            return (arr[index] + arr[index + 1]) / 2.0;
         }
 
 
-        return 0;
-        }
+    }
 
+    public static void main(String[] args) {
 
+        double v = new MedianofTwoSortedArrays().findMedianSortedArrays(new int[]{1, 2, 3}, new int[]{3, 4});
+        System.out.println(v);
     }
 }
