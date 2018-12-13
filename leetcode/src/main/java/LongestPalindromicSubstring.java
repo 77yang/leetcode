@@ -46,10 +46,20 @@ public class LongestPalindromicSubstring {
                 if (Objects.equals(s.charAt(i), s.charAt(j))) {
                     String substring = s.substring(i, j + 1);
 //check substring is a palindrome
+                    int k1 = 0;
+                    int length = substring.length();
+                    boolean isPalindrome = true;
+                    while (k1 < length-1 - k1 && isPalindrome) {
+                        if (substring.charAt(k1) != substring.charAt(length-1 - k1)) {
+                            isPalindrome = false;
+
+                        }
+                        k1++;
+                    }
 
 
 
-                    if (j - i >= max) {
+                    if (j - i >= max && isPalindrome) {
                         max = j - i;
                         str = substring;
 
@@ -58,15 +68,12 @@ public class LongestPalindromicSubstring {
             }
         }
 
-        if (str.equals(s)&&s.length()>0) {
-            str = s.charAt(0)+"";
-        }
 
         return str;
     }
 
     public static void main(String[] args) {
-        String s = new LongestPalindromicSubstring().longestPalindrome("abcda");
+        String s = new LongestPalindromicSubstring().longestPalindrome("bb");
         System.out.println(s);
     }
 }
