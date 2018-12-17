@@ -8,6 +8,7 @@ public class LeetCodeTest {
 
 
         LongestPalindromicSubstring s = new LongestPalindromicSubstring();
+        System.out.println(s.longestPalindrome("babad"));
         System.out.println(s.longestPalindrome("cbbd"));
     }
 }
