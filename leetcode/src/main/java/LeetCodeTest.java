@@ -1,3 +1,4 @@
+import com.yang7.LongestPalindromicSubstring;
 import org.junit.jupiter.api.Test;
 
 public class LeetCodeTest {

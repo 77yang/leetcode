@@ -1,3 +1,5 @@
+package com.yang7;
+
 /**
  * Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
  * Output: 7 -> 0 -> 8
@@ -43,13 +45,13 @@ public class AddTwoNumbers {
 
     public static void main(String[] args) {
         ListNode l1 = new ListNode(5);
-/*        l1.next = new ListNode(4);
-        l1.next.next = new ListNode(3);*/
+/*        l1.next = new com.yang7.ListNode(4);
+        l1.next.next = new com.yang7.ListNode(3);*/
 
 
         ListNode l2 = new ListNode(5);
-  /*      l2.next = new ListNode(6);
-        l2.next.next = new ListNode(4);*/
+  /*      l2.next = new com.yang7.ListNode(6);
+        l2.next.next = new com.yang7.ListNode(4);*/
 
 
         ListNode listNode = new AddTwoNumbers().addTwoNumbers(l1, l2);
@@ -69,7 +71,7 @@ class ListNode {
 
     @Override
     public String toString() {
-        return "ListNode{" +
+        return "com.yang7.ListNode{" +
                 "val=" + val +
                 ", next=" + next +
                 '}';
