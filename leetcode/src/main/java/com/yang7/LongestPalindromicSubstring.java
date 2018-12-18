@@ -28,46 +28,31 @@ import java.util.Objects;
  *
  */
 public class LongestPalindromicSubstring {
-
     public String longestPalindrome(String s) {
-        String str = s==null?"":s;
+        System.out.println(s);
+        if (s == null || s.length() < 1) return "";
+        int start = 0, end = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int len1 = expandAroundCenter(s, i, i);
+            int len2 = expandAroundCenter(s, i, i + 1);
+            int len = Math.max(len1, len2);
+            System.out.println(len);
+            if (len > end - start) {
+                start = i - (len - 1) / 2;
+                end = i + len / 2;
 
-        /**
-         * cbbd
-         * output c
-         * expect bb
-         */
-        int len = s.length();
-
-        for (int i = len; i >0; i--) {
-            for (int j = 0; j + i <=len; j++) {
-
-                if (Objects.equals(s.charAt(j), s.charAt(j+i-1))) {
-                    String substring = s.substring(j, i+j);
-                    if (isPalindrome(substring)) {
-                        return substring;
-                    }
-                }
             }
         }
-
-        return str;
+        return s.substring(start, end + 1);
     }
 
-
-    boolean  isPalindrome(String str) {
-        int k1 = 0;
-        int length = str.length();
-        boolean isPalindrome = true;
-        while (k1 < length-1 - k1 && isPalindrome) {
-            if (str.charAt(k1) != str.charAt(length-1 - k1)) {
-                isPalindrome = false;
-
-            }
-            k1++;
+    private int expandAroundCenter(String s, int left, int right) {
+        int L = left, R = right;
+        while (L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) {
+            L--;
+            R++;
         }
-        return isPalindrome;
-
+        return R - L - 1;
     }
 
 
