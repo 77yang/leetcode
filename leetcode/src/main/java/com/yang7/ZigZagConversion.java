@@ -15,22 +15,21 @@ import java.util.*;
 public class ZigZagConversion {
 
     public String convert(String s, int numRows) {
-        //true add
         boolean addOrreduce = true;
 
-        Map<Integer, List> data = new HashMap<>();
+        Map<Integer, String> data = new HashMap<>();
         int row = 1;
         int i = 0;
         int length = s.length();
         while (i < length) {
-            List list = data.get(row);
-            if (list == null) {
-                list = new ArrayList();
+            String str = data.get(row);
+            if (str == null) {
+                str = "";
             }
-            list.add(s.charAt(i++));
+            str += s.charAt(i++);
 
+            data.put(row, str);
 
-            data.put(row, list);
             if (row == numRows) {
                 addOrreduce = false;
             }
@@ -49,9 +48,7 @@ public class ZigZagConversion {
         StringBuffer sb = new StringBuffer();
 
         data.values().forEach(ls ->
-                ls.forEach(t ->
-                        sb.append(t)
-                )
+                sb.append(ls)
         );
 
         return sb.toString();
