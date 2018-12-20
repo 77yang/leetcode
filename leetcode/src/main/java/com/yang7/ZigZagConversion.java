@@ -17,16 +17,16 @@ public class ZigZagConversion {
     public String convert(String s, int numRows) {
         boolean addOrreduce = true;
 
-        Map<Integer, String> data = new HashMap<>();
+        Map<Integer, StringBuilder> data = new HashMap<>();
         int row = 1;
         int i = 0;
         int length = s.length();
         while (i < length) {
-            String str = data.get(row);
+            StringBuilder str = data.get(row);
             if (str == null) {
-                str = "";
+                str = new StringBuilder();
             }
-            str += s.charAt(i++);
+            str.append(s.charAt(i++));
 
             data.put(row, str);
 
