@@ -3,7 +3,7 @@ import com.yang7.ReverseInteger
 import com.yang7.ZigZagConversion
 import org.junit.jupiter.api.Test
 
-class LeetCodeTest {
+class LeetCodeZigZagConversion {
 
     @Test
     fun longestPalindromicSubstring() {
@@ -23,7 +23,16 @@ class LeetCodeTest {
 
     @Test
     fun zigZagConversion() {
-        println(ZigZagConversion.convert("test",1))
+
+        var message = ZigZagConversion().convert("PAYPALISHIRING", 4)
+        println("$message  ${message=="PINALSIGYAHRPI"}")
+
+
+         message = ZigZagConversion().convert("PAYPALISHIRING", 3)
+        println("$message  ${message=="PAHNAPLSIIGYIR"}")
+
 
     }
+
+
 }
