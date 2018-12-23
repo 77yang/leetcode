@@ -47,12 +47,7 @@ object StringtoInteger{
     fun myAtoi(str: String): Int {
 
         var str = str.trim()
-
-
-        val example = "-+0123456789"
         val length = str.length
-
-
         var i=1
         while(i< length&&length>1){
             if (!str[i].isDigit()) {
@@ -61,7 +56,6 @@ object StringtoInteger{
             }
             i++
         }
-
         val num: BigInteger
         try {
             num = BigInteger(str)
@@ -73,8 +67,6 @@ object StringtoInteger{
             return Int.MAX_VALUE
 
         }
-
-
         if (num.compareTo(Int.MIN_VALUE.toBigInteger()) < 0) {
             return Int.MIN_VALUE
 
