@@ -1,7 +1,4 @@
-import com.yang7.LongestPalindromicSubstring
-import com.yang7.ReverseInteger
-import com.yang7.StringtoInteger
-import com.yang7.ZigZagConversion
+import com.yang7.*
 import org.junit.jupiter.api.Test
 
 class LeetCodeZigZagConversion {
@@ -44,6 +41,17 @@ class LeetCodeZigZagConversion {
         println(StringtoInteger.myAtoi("4193 with words"))
         println(StringtoInteger.myAtoi("words and 987"))
     }
+
+
+    @Test
+    fun palindromeNumber() {
+        println(PalindromeNumber.isPalindrome(1))
+        println(PalindromeNumber.isPalindrome(-1))
+        println(PalindromeNumber.isPalindrome(+1))
+        println(PalindromeNumber.isPalindrome(121))
+        println(PalindromeNumber.isPalindrome(1212))
+    }
+
 
 
 
