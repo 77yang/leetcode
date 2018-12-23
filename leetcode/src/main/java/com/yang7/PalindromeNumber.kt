@@ -10,25 +10,14 @@ package com.yang7
 object PalindromeNumber {
 
     fun isPalindrome(x: Int): Boolean {
-        if (x == null) {
-            return false
+        var t = x
+        if(x<0||x%10==0&&x!=0) return false
+        var reverseVal = 0
+        //12321
+        while (t > reverseVal) {
+            reverseVal = reverseVal * 10 + t % 10
+            t /= 10
         }
-
-        val str = x.toString()
-        val length = str.length
-
-        if (length == 1) {
-            return true
-        }
-
-        var i = 0
-        while (i <= length - i-1) {
-            if (str[i] != str[length - i-1]) {
-                return false
-            }
-            i++
-        }
-
-        return true
+        return reverseVal == t || t==reverseVal/10
     }
 }
