@@ -1,7 +1,7 @@
 import com.yang7.*
 import org.junit.jupiter.api.Test
 
-class LeetCodeZigZagConversion {
+class LeetCodeZigZagConversionTest {
 
     @Test
     fun longestPalindromicSubstring() {
