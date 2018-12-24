@@ -56,6 +56,7 @@ class LeetCodeZigZagConversionTest {
     @Test
     fun regularExpressionMatching() {
         println(RegularExpressionMatching.isMatch("mississippi", "mis*is*p*."))
+        println(RegularExpressionMatching.isMatch("aab", "c*a*b"))
 
 
     }
