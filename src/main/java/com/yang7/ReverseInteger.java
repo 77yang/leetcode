@@ -1,8 +1,8 @@
 package com.yang7;
 
-import jdk.nashorn.internal.ir.ReturnNode;
-
-//https://leetcode.com/problems/reverse-integer/
+/**
+ * https://leetcode.com/problems/reverse-integer/
+ */
 public class ReverseInteger {
 
     public int reverse(int x) {

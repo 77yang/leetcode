@@ -1,7 +1,7 @@
 import com.yang7.*
 import org.junit.jupiter.api.Test
 
-class LeetCodeZigZagConversion {
+class LeetCodeZigZagConversionTest {
 
     @Test
     fun longestPalindromicSubstring() {
@@ -50,6 +50,15 @@ class LeetCodeZigZagConversion {
         println(PalindromeNumber.isPalindrome(+1))
         println(PalindromeNumber.isPalindrome(121))
         println(PalindromeNumber.isPalindrome(1212))
+    }
+
+
+    @Test
+    fun regularExpressionMatching() {
+        println(RegularExpressionMatching.isMatch("mississippi", "mis*is*p*."))
+        println(RegularExpressionMatching.isMatch("aab", "c*a*b"))
+
+
     }
 
 
