@@ -1,0 +1,30 @@
+spring:
+  mail:
+    host: smtp.qq.com
+    username: “”
+    password: “”
+    properties:
+      mail:
+        smtp:
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 3000
+          auth: true
+          starttls:
+            enable: true
+            required: true
+    protocol: smtp
+    port: 587
+
+  thymeleaf:
+    cache: false
+  devtools:
+    restart:
+      exclude=static/**,public/**:
+
+
+
+app-config:
+  alertInterval: 30000
+  low: 11000
+  high: 14000
