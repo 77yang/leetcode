@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import javax.annotation.PostConstruct
+import kotlin.math.abs
 
 @Component
 class BTCClient {
@@ -18,14 +19,15 @@ class BTCClient {
     @Autowired
     private val emailSender: EmailSender? = null
 
-    @Autowired
-    private val appConfig: AppConfig? = null
+    private var  lastSavePrice = 0
+
+
 
     private var lastSendTime = System.currentTimeMillis()
 
-    val apiKey = ""
-    val secretKey = ""
-    val targetEmail = ""
+    val apiKey = "87861923-dab4c45e6f-4d33ec97-bd64e"
+    val secretKey = "a040ee49-6cee4c0c-205e4e64-eeb9f"
+    val targetEmail = "501294009@qq.com"
 
 
 
@@ -48,20 +50,35 @@ class BTCClient {
             val pN = (close - open) / open * 100
             var stringFormat="%.2f"
 
+            if(lastSavePrice <= 0) {
+                lastSavePrice = close.toInt()
+            }
 
-            log.info("now=$close pN=${String.format(stringFormat,pN)} pL=${String.format(stringFormat,pL)} pH=${String.format(stringFormat,pH)}")
+
+            val differenceP = abs(close.toInt() - lastSavePrice)
+
+
+            log.info("now=$close pN=${String.format(stringFormat,pN)} pL=${String.format(stringFormat,pL)} pH=${String.format(stringFormat,pH)} dF=$differenceP")
+
+
+            if (differenceP >= AppConfig.priceInterval) {
+                emailSender!!.send(targetEmail, "Threshold-Alert now=$close dF=$differenceP", JSON.toJSONString(candlestick))
+                lastSavePrice = close.toInt()
+            }
+
+
 
             val now = System.currentTimeMillis()
-            if (now - lastSendTime < appConfig!!.alertInterval.toLong()) {
+            if (now - lastSendTime < AppConfig.alertInterval.toLong()) {
                 return@subscribeCandlestickEvent
             }
 
             lastSendTime = now
 
-            if (close > appConfig.high.toDouble()) {
+            if (close > AppConfig.high.toDouble()) {
                 emailSender!!.send(targetEmail, "High-Alert now=$close", JSON.toJSONString(candlestick))
             }
-            if (close < appConfig.low.toDouble()) {
+            if (close < AppConfig.low.toDouble()) {
                 emailSender!!.send(targetEmail, "Low-Alert now=$close", JSON.toJSONString(candlestick))
             }
 

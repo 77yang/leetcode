@@ -1,6 +1,5 @@
 package com.qyang2.btc
 
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.ui.set
@@ -11,21 +10,21 @@ import org.springframework.web.bind.annotation.RequestMapping
 @RequestMapping("index")
 class IndexController {
 
-    @Autowired
-    private lateinit var appConfig:AppConfig
+
     @GetMapping("configs")
     fun getConfigs(model: Model): String {
-        model["appConfig"] = appConfig
+        model["appConfig"] = AppConfig
         return "index"
     }
 
 
     @GetMapping("changeConfig")
-    fun changeConfig(name:String,value:String,model: Model):String {
+    fun changeConfig(name:String,value:String):String {
         when (name) {
-            "low" -> appConfig.low = value.toBigDecimal()
-            "high" -> appConfig.high = value.toBigDecimal()
-            "alertInterval" -> appConfig.alertInterval = value
+            "low" -> AppConfig.low = value.toInt()
+            "high" -> AppConfig.high = value.toInt()
+            "alertInterval" -> AppConfig.alertInterval = value.toInt()
+            "priceInterval" -> AppConfig.priceInterval = value.toInt()
         }
         return "redirect:configs"
     }

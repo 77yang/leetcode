@@ -28,8 +28,14 @@
                 </el-row>
                 <br>
                 <el-row>
-                    <el-button style="width: 150px;" type="primary" th:text="'Interval:'+${appConfig.alertInterval}"></el-button>
+                    <el-button style="width: 150px;" type="primary" th:text="'TimeInterval:'+${appConfig.alertInterval}"></el-button>
                     <el-button type="primary" @click="btnClick('alertInterval')" icon="el-icon-edit" circle></el-button>
+                </el-row>
+
+                <br>
+                <el-row>
+                    <el-button style="width: 150px;" type="primary" th:text="'PriceInterval:'+${appConfig.priceInterval}"></el-button>
+                    <el-button type="primary" @click="btnClick('priceInterval')" icon="el-icon-edit" circle></el-button>
                 </el-row>
 
 
