@@ -6,9 +6,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
-/**
- * 发送邮件
- */
 @Component
 public class EmailSender {
     @Value("${spring.mail.username}")
