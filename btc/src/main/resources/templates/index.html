@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://java.sun.com/JSP/Page">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+<div id="app">
+
+    <el-row>
+        <el-col :span="24">
+            <div class="grid-content bg-purple-dark">
+                <el-row>
+                    <el-button style="width: 150px;"  type="primary" th:text="'Low:'+ ${appConfig.low}"></el-button>
+                    <el-button type="primary" @click="btnClick('low')" icon="el-icon-edit" circle></el-button>
+                </el-row>
+
+                <br>
+                <el-row>
+                    <el-button style="width: 150px;" type="primary" th:text="'High:'+${appConfig.high}"></el-button>
+                    <el-button type="primary" @click="btnClick('high')" icon="el-icon-edit" circle></el-button>
+                </el-row>
+                <br>
+                <el-row>
+                    <el-button style="width: 150px;" type="primary" th:text="'TimeInterval:'+${appConfig.alertInterval}"></el-button>
+                    <el-button type="primary" @click="btnClick('alertInterval')" icon="el-icon-edit" circle></el-button>
+                </el-row>
+
+                <br>
+                <el-row>
+                    <el-button style="width: 150px;" type="primary" th:text="'PriceInterval:'+${appConfig.priceInterval}"></el-button>
+                    <el-button type="primary" @click="btnClick('priceInterval')" icon="el-icon-edit" circle></el-button>
+                </el-row>
+
+
+            </div>
+        </el-col>
+    </el-row>
+</div>
+
+</body>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: function() {
+            return { visible: false }
+        },
+        methods:{
+            btnClick: function (msg) {
+                this.$prompt(`please input value of ${msg}`, 'Tip', {
+                    confirmButtonText: 'confirm',
+                    cancelButtonText: 'cancel'
+                }).then(({ value }) => {
+                  window.location.href = "http://"+ window.location.host + `/index/changeConfig?name=${msg}&value=${value}`
+
+            }).catch(() => {
+
+            });
+            }
+        }
+    })
+</script>
+</html>
