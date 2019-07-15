@@ -30,49 +30,23 @@
 # Output: true
 class Solution:
     def isValid(self, s: str) -> bool:
-
-        if s == "":
-            return True
         length = len(s)
-
-        start = s[0]
-        if start == "}" or start == "]" or start == ")":
-            return False
-
         temp = []
+
+        dict = {
+            "[": "]",
+            "{": "}",
+            "(": ")",
+        }
         for i in range(length):
             ele = s[i]
-            if ele == "(" or ele == "{" or ele == "[":
+            if ele in dict.keys():
                 temp.append(ele)
-
-            max_index = len(temp) - 1
-
-            if max_index < 0 and (ele == "}" or ele == "]" or ele == ")"):
+                continue
+            if ele in dict.values():
+                if len(temp) > 0 and dict[temp.pop()] == ele:
+                    continue
                 return False
-
-            if ele == ")":
-                result = temp[max_index] == "("
-                if not result:
-                    return False
-                del temp[max_index]
-
-                continue
-
-            if ele == "]":
-                result = temp[max_index] == "["
-                if not result:
-                    return False
-                del temp[max_index]
-
-                continue
-
-            if ele == "}":
-                result = temp[max_index] == "{"
-                if not result:
-                    return False
-                del temp[max_index]
-                continue
-
         return len(temp) == 0
 
 
