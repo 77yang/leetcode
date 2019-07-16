@@ -15,40 +15,22 @@ class ListNode:
         self.next = None
 
 
-def appendNode(l1, l2, parent_node: ListNode):
-
+def appendNode(l1, l2):
     if l1 is None:
         return l2
     if l2 is None:
         return l1
-
-    if l1 is None and l2 is None:
-        parent_node.next = None
-        return
-
-    if l1 is None and l2 is not None:
-        new_node = ListNode(l2.val)
-        parent_node.next = new_node
-        appendNode(l1, l2.next, new_node)
-    elif l2 is None and l1 is not None:
-        new_node = ListNode(l1.val)
-        parent_node.next = new_node
-        appendNode(l1.next, l2, new_node)
-    elif l1 is not None and l2 is not None and l1.val >= l2.val:
-        new_node = ListNode(l2.val)
-        parent_node.next = new_node
-        appendNode(l1, l2.next, new_node)
-    elif l1 is not None and l2 is not None and l1.val < l2.val:
-        new_node = ListNode(l1.val)
-        parent_node.next = new_node
-        appendNode(l1.next, l2, new_node)
+    if l1.val >= l2.val:
+        l2.next = appendNode(l1, l2.next)
+        return l2
+    if l2.val > l1.val:
+        l1.next = appendNode(l1.next, l2)
+        return l1
 
 
 class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
-        root_node = ListNode(-1)
-        appendNode(l1, l2, root_node)
-        return root_node.next
+        return appendNode(l1, l2)
 
 
 node1 = ListNode(1)
