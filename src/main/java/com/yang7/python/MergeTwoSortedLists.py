@@ -15,39 +15,10 @@ class ListNode:
         self.next = None
 
 
-def appendNode(l1, l2):
-    if l1 is None:
-        return l2
-    if l2 is None:
-        return l1
-    if l1.val >= l2.val:
-        l2.next = appendNode(l1, l2.next)
-        return l2
-    if l2.val > l1.val:
-        l1.next = appendNode(l1.next, l2)
-        return l1
-
-
 class Solution:
-    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
-        return appendNode(l1, l2)
-
-
-node1 = ListNode(1)
-node2 = ListNode(2)
-
-node1.next = node2
-node3 = ListNode(4)
-node2.next = node3
-
-node4 = ListNode(1)
-node5 = ListNode(3)
-node4.next = node5
-
-node6 = ListNode(4)
-node5.next = node6
-
-lists = Solution().mergeTwoLists(node1, node4)
-while lists is not None:
-    print(lists.val)
-    lists = lists.next
+    def mergeTwoLists(self, a, b):
+        if a and b:
+            if a.val > b.val:
+                a, b = b, a
+            a.next = self.mergeTwoLists(a.next, b)
+        return a or b
