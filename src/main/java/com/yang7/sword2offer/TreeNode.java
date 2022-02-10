@@ -2,12 +2,20 @@ package com.yang7.sword2offer;
 
 
 public class TreeNode {
-    public int val;
+    public Integer val;
     public TreeNode left;
     public TreeNode right;
 
-    public TreeNode(int x) {
-        val = x;
+
+
+    public TreeNode(Integer value) {
+        this(value, null, null);
+    }
+
+    TreeNode(Integer value, TreeNode left, TreeNode right) {
+        this.val = value;
+        this.left = left;
+        this.right = right;
     }
 
     @Override
